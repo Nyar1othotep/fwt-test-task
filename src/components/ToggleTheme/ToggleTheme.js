@@ -16,7 +16,7 @@ const getTheme = () => {
    return themes.dark;
 };
 
-const ToggleTheme = ({ clazz }) => {
+const ToggleTheme = ({ className }) => {
    const [theme, setTheme] = useState(getTheme);
 
    useEffect(() => {
@@ -24,11 +24,12 @@ const ToggleTheme = ({ clazz }) => {
       localStorage.setItem("theme", theme);
    }, [theme]);
 
+   const clazz = `btn btn--theme ${theme}`;
+
    return (
-      <div
-         className={clazz + " " + theme}
+      <button
+         className={className + " " + clazz}
          tabIndex={0}
-         role="button"
          aria-label="switch theme"
          onClick={() =>
             theme === themes.dark
@@ -46,7 +47,7 @@ const ToggleTheme = ({ clazz }) => {
          <svg>
             <use href={`${svg}#theme`}></use>
          </svg>
-      </div>
+      </button>
    );
 };
 

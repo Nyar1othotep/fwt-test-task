@@ -3,17 +3,21 @@ import ToggleTheme from "../ToggleTheme/ToggleTheme";
 
 const AppHeader = () => {
    return (
-      <header className="app__header">
-         <div className="app__logo">
-            <a href="https://framework.team/">
-               <img
-                  src={logo}
-                  alt="the FWT logo with a link to their website"
-               />
-            </a>
-         </div>
+      <header className="app-header">
+         <div className="app-header__container _container">
+            <div className="app-header__body">
+               <div className="app-header__logo">
+                  <a href="https://framework.team/">
+                     <img
+                        src={logo}
+                        alt="the FWT logo with a link to their website"
+                     />
+                  </a>
+               </div>
 
-         <ToggleTheme clazz="app_theme" />
+               <ToggleTheme className="app-header__theme" />
+            </div>
+         </div>
       </header>
    );
 };

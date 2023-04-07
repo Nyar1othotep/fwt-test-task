@@ -1,0 +1,11 @@
+$green: #7c9a92;
+$lime: #6AAE72;
+$white: #FFF;
+$primary: #253334;
+$grey: #BEC2C2;
+$white-pastel: #F7F3F0;
+$black: #000000;
+$error: #E04040;
+@mixin lh($lh, $fz) {
+   line-height: calc(#{$lh} / #{$fz} * 100%);
+}

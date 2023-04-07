@@ -1,0 +1,16 @@
+.app-header {
+   padding: 35px 0;
+   &__body {
+      display: flex;
+      align-items: center;
+      min-height: 64px;
+      max-height: 64px;
+   }
+   &__logo img {
+      width: 64px;
+      object-fit: contain;
+   }
+   &__theme {
+      margin-left: auto;
+   }
+}
