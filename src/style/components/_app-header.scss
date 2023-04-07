@@ -3,6 +3,7 @@
    &__body {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       min-height: 64px;
       max-height: 64px;
    }
@@ -11,6 +12,8 @@
       object-fit: contain;
    }
    &__theme {
-      margin-left: auto;
+      svg {
+         fill: var(--main-color);
+      }
    }
 }

@@ -1,6 +1,11 @@
 @import "./style/abstracts/variables";
 @import "./style/abstracts/fonts";
+// @import "./style/base/normalize";
 @import "./style/base/nullstyle";
 @import "./style/base/main-styles";
-@import "./style/components/buttons";
 @import "./style/components/app-header";
+@import "./style/components/filters";
+@import "./style/components/buttons";
+@import "./style/components/inputs";
+@import "./style/components/selects";
+@import "./style/components/simplebar";

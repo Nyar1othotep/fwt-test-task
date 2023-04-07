@@ -1,0 +1,77 @@
+.Select {
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: flex-start;
+   width: 265px;
+   height: 46px;
+   border-radius: 8px;
+   box-shadow: 0px 0px 0px 1px var(--main-color);
+   box-sizing: border-box;
+   background: var(--filters-background);
+   cursor: pointer;
+   &--open {
+      border-radius: 8px 8px 0 0;
+      .Select__arrow svg {
+         transform: rotate(180deg);
+      }
+   }
+   &__title {
+		padding-right: 10px;
+      width: 220px;
+      word-break: break-all;
+      margin: 0 0 0 15px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-clamp: 3;
+      white-space: nowrap;
+   }
+   &__optionContainer {
+      display: block;
+      position: absolute;
+      width: calc(100%);
+      box-shadow: 0px 0px 0px 1px var(--main-color);
+      border-radius: 8px;
+      top: 47px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      z-index: 1;
+      background: var(--filters-background);
+      &--open {
+         border-radius: 0 0 8px 8px;
+         max-height: 300px;
+      }
+   }
+   &__option {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      width: calc(100%);
+      box-sizing: border-box;
+      padding: 10px 22px;
+      &:hover {
+         background: var(--main-color);
+         color: var(--background-color);
+      }
+      &:last-of-type {
+         border-radius: 0 0 8px 8px;
+      }
+   }
+   &__optionName {
+      font-family: "Roboto Medium";
+      font-size: 16px;
+      @include lh(20, 16);
+      color: inherit;
+      word-break: break-word;
+   }
+   &__arrow {
+      position: absolute;
+      display: flex;
+      right: 18px;
+      float: right;
+      fill: #b3b3b3;
+   }
+}

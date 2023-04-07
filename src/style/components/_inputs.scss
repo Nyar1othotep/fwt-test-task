@@ -1,0 +1,12 @@
+.Input {
+   width: 265px;
+   height: 45px;
+   border-radius: 8px;
+	border: 1px solid var(--main-color);
+   outline: none;
+   padding: 0 15px;
+   box-sizing: border-box;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   background: var(--filters-background);
+}

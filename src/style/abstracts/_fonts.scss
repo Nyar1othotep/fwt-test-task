@@ -1,4 +1,11 @@
 @font-face {
+   font-family: "Roboto Light";
+   src: url("../../resources/fonts/Roboto-Light.woff2") format("woff2");
+   font-weight: 300;
+   font-style: normal;
+}
+
+@font-face {
    font-family: "Roboto Regular";
    src: url("../../resources/fonts/Roboto-Regular.woff2") format("woff2");
    font-weight: normal;

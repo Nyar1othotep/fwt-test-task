@@ -24,18 +24,17 @@ const ToggleTheme = ({ className }) => {
       localStorage.setItem("theme", theme);
    }, [theme]);
 
-   const clazz = `btn btn--theme ${theme}`;
-
    return (
-      <button
-         className={className + " " + clazz}
+      <div
+         className={`${className} btn btn--theme ${theme}`}
          tabIndex={0}
+         role="button"
          aria-label="switch theme"
-         onClick={() =>
+         onClick={() => {
             theme === themes.dark
                ? setTheme((theme) => themes.light)
-               : setTheme((theme) => themes.dark)
-         }
+               : setTheme((theme) => themes.dark);
+         }}
          onKeyPress={(e) => {
             if (e.key === " " || e.key === "Enter") {
                theme === themes.dark
@@ -47,7 +46,7 @@ const ToggleTheme = ({ className }) => {
          <svg>
             <use href={`${svg}#theme`}></use>
          </svg>
-      </button>
+      </div>
    );
 };
 

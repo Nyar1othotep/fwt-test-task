@@ -1,0 +1,9 @@
+.filters {
+   .Input,
+   .Select {
+      font-family: "Roboto Regular";
+      font-size: 13px;
+      @include lh(15, 13);
+      color: var(--main-color);
+   }
+}
