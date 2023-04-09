@@ -1,12 +1,12 @@
 import AppHeader from "../AppHeader/AppHeader";
-import Filters from "../Filters/Filters";
+import { GalleryPage } from "../Pages";
 
 const App = () => {
    return (
       <>
          <AppHeader />
          <main>
-            <Filters />
+            <GalleryPage />
          </main>
       </>
    );

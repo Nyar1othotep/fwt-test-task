@@ -1,29 +1,16 @@
-import { useState, useCallback } from "react";
-import useFWTService from "../../services/FWTService";
+import { useState } from "react";
 import Select from "../Select/Select";
 import Input from "../Input/Input";
 import Range from "../Range/Range";
 import Spinner from "../Spinner/Spinner";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
-const Filters = () => {
+const Filters = ({ authors, locations, process }) => {
    const [inputValue, setInputValue] = useState("");
    const [selectLocationsValue, setSelectLocationsValue] = useState("Location");
    const [selectAuthorsValue, setSelectAuthorsValue] = useState("Author");
    const [fromValue, setFromValue] = useState("");
    const [beforeValue, setBeforeValue] = useState("");
-   const [authors, setAuthors] = useState([]);
-   const [locations, setLocations] = useState([]);
-
-   const { getAllAuthors, getAllLocations, setProcess, process } =
-      useFWTService();
-
-   const onRequest = useCallback((getFunc, setLoadedData, loadedData) => {
-      getFunc()
-         .then((data) => setLoadedData((loadedData) => data))
-         .then(() => setProcess("confirmed"));
-      // eslint-disable-next-line
-   }, []);
 
    return (
       <div className="filters">
@@ -41,7 +28,6 @@ const Filters = () => {
                   onChange={(name) =>
                      setSelectAuthorsValue((selectAuthorsValue) => name)
                   }
-                  onClick={() => onRequest(getAllAuthors, setAuthors, authors)}
                   options={authors}
                   value={selectAuthorsValue}
                   Spinner={Spinner}
@@ -52,9 +38,6 @@ const Filters = () => {
                <Select
                   onChange={(name) =>
                      setSelectLocationsValue((selectLocationsValue) => name)
-                  }
-                  onClick={() =>
-                     onRequest(getAllLocations, setLocations, locations)
                   }
                   options={locations}
                   value={selectLocationsValue}

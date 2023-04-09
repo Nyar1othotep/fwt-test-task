@@ -4,6 +4,7 @@ const useFWTService = () => {
    const { request, process, setProcess } = useHttp();
 
    const _apiBase = "https://test-front.framework.team/";
+   const _basePage = 1;
 
    const getAllAuthors = async () => {
       const res = await request(`${_apiBase}authors`);
@@ -13,6 +14,11 @@ const useFWTService = () => {
    const getAllLocations = async () => {
       const res = await request(`${_apiBase}locations`);
       return res.map(_transfromLocations);
+   };
+
+   const getAllPaintings = async (page = _basePage) => {
+      const res = await request(`${_apiBase}paintings?_page=${page}`);
+      return res;
    };
 
    const _transfromAuthors = (authors) => {
@@ -32,6 +38,7 @@ const useFWTService = () => {
    return {
       getAllAuthors,
       getAllLocations,
+      getAllPaintings,
       process,
       setProcess,
    };
