@@ -1,5 +1,6 @@
 import logo from "../../resources/img/logo.png";
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
+import Spinner from "../Spinner/Spinner";
 
 const AppHeader = () => {
    return (
@@ -14,6 +15,8 @@ const AppHeader = () => {
                      />
                   </a>
                </div>
+
+               <Spinner width="50" height="50" />
 
                <ToggleTheme className="app-header__theme" />
             </div>

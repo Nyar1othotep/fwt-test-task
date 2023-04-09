@@ -35,6 +35,7 @@ const Select = ({
          }}
          tabIndex={0}
       >
+
          {!value && <span className="Select__title">Choose an option</span>}
          <span className="Select__title">{value}</span>
          <div className="Select__arrow">

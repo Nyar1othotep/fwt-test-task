@@ -10,6 +10,11 @@
    --filters-background: #0c0c0c;
 }
 
+:root {
+   --spinner-width: 50px;
+   --spinner-height: 50px;
+}
+
 $card-backgound-color: rgba(255, 255, 255, 0.75);
 $disabled: #b3b3b3;
 
