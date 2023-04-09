@@ -39,7 +39,10 @@ const Select = ({
             }
          }}
          onKeyPress={(e) => {
-            if (e.key === " " || (e.key === "Enter" && !disabled)) {
+            if (
+               (e.key === " " && !disabled) ||
+               (e.key === "Enter" && !disabled)
+            ) {
                if (shouldLog.current && options.length === 0) {
                   shouldLog.current = false;
                   onClick();
@@ -52,7 +55,7 @@ const Select = ({
          {!value && <span className="Select__title">Choose an option</span>}
          <span className="Select__title">{value}</span>
          <div className="Select__arrow">
-            <svg width={10} height={6}>
+            <svg className="icon__arrow">
                <use href={`${svg}#arrow`}></use>
             </svg>
          </div>
@@ -72,10 +75,10 @@ const Select = ({
                      options.map((option) => {
                         return (
                            <li
-                              onClick={() => onChange(option.name)}
+                              onClick={() => onChange(option.option)}
                               onKeyPress={(e) => {
                                  if (e.key === " " || e.key === "Enter") {
-                                    onChange(option.name);
+                                    onChange(option.option);
                                  }
                               }}
                               className={"Select__option "}
@@ -83,7 +86,7 @@ const Select = ({
                               tabIndex={0}
                            >
                               <p className="Select__optionName">
-                                 {option.name}
+                                 {option.option}
                               </p>
                            </li>
                         );

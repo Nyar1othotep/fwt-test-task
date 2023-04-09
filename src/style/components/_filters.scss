@@ -1,9 +1,11 @@
 .filters {
-   .Input,
-   .Select {
-      font-family: "Roboto Regular";
-      font-size: 13px;
-      @include lh(15, 13);
-      color: var(--main-color);
+   font-family: "Roboto Regular";
+   font-size: 13px;
+   @include lh(15, 13);
+   &__body {
+      display: flex;
+      & > *:not(:last-child) {
+         margin: 0px 20px 0px 0px;
+      }
    }
 }

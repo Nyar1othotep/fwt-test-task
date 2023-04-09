@@ -1,16 +1,21 @@
 body {
    background: var(--background-color);
    scroll-behavior: smooth;
+   color: var(--main-color);
 }
 
 h2 {
    font-family: "Roboto Bold";
    font-size: 18px;
    @include lh(20, 18);
-   color: var(--main-color);
+   // color: var(--main-color);
 }
 
-
+strong {
+   font-family: "Roboto Medium";
+   font-size: 13px;
+   @include lh(20, 13);
+}
 
 /* ----------------CONTAINER------------------------------------------------- */
 

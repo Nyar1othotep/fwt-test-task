@@ -4,4 +4,9 @@
       height: 20px;
       fill: var(--main-color);
    }
+   &__arrow {
+      width: 10px;
+      height: 6px;
+      fill: $disabled;
+   }
 }

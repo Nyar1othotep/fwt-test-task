@@ -16,7 +16,9 @@
 }
 
 $card-backgound-color: rgba(255, 255, 255, 0.75);
+$range-input-backgrund: #efefef;
 $disabled: #b3b3b3;
+$black: #000000;
 
 @mixin lh($lh, $fz) {
    line-height: calc(#{$lh} / #{$fz} * 100%);
