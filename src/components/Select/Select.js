@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import svg from "../../resources/svg/sprites.svg";
 import useOutsideClick from "../../hooks/useOutideClick";
 import SimpleBar from "simplebar-react";
+import Spinner from "../Spinner/Spinner";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 const Select = ({
    className,
@@ -10,9 +12,13 @@ const Select = ({
    value,
    onChange,
    onClick,
+   spinner = false,
+   error = false,
+   process = "confirmed",
 }) => {
    const [isOpen, setIsOpen] = useState(false);
    const ref = useRef(null);
+   const shouldLog = useRef(true);
    const toggleOpen = () => setIsOpen((prev) => !prev);
 
    useOutsideClick(ref, toggleOpen);
@@ -23,19 +29,24 @@ const Select = ({
          className={className + " Select " + (isOpen ? "Select--open " : "")}
          onClick={() => {
             if (!disabled) {
-               onClick(true);
+               if (shouldLog.current) {
+                  shouldLog.current = false;
+                  onClick();
+               }
                toggleOpen();
             }
          }}
          onKeyPress={(e) => {
             if (e.key === " " || (e.key === "Enter" && !disabled)) {
-               onClick(true);
+               if (shouldLog.current) {
+                  shouldLog.current = false;
+                  onClick();
+               }
                toggleOpen();
             }
          }}
          tabIndex={0}
       >
-
          {!value && <span className="Select__title">Choose an option</span>}
          <span className="Select__title">{value}</span>
          <div className="Select__arrow">
@@ -51,21 +62,31 @@ const Select = ({
                }
             >
                <SimpleBar style={{ maxHeight: "inherit" }}>
-                  {options.map((option) => (
-                     <li
-                        onClick={() => onChange(option.name)}
-                        onKeyPress={(e) => {
-                           if (e.key === " " || e.key === "Enter") {
-                              onChange(option.name);
-                           }
-                        }}
-                        className={"Select__option "}
-                        key={option.id}
-                        tabIndex={0}
-                     >
-                        <p className="Select__optionName">{option.name}</p>
-                     </li>
-                  ))}
+                  {spinner && process === "loading" ? (
+                     <Spinner width="50" height="50" />
+                  ) : error && process === "error" ? (
+                     <ErrorMessage />
+                  ) : (
+                     options.map((option) => {
+                        return (
+                           <li
+                              onClick={() => onChange(option.name)}
+                              onKeyPress={(e) => {
+                                 if (e.key === " " || e.key === "Enter") {
+                                    onChange(option.name);
+                                 }
+                              }}
+                              className={"Select__option "}
+                              key={option.id}
+                              tabIndex={0}
+                           >
+                              <p className="Select__optionName">
+                                 {option.name}
+                              </p>
+                           </li>
+                        );
+                     })
+                  )}
                </SimpleBar>
             </ul>
          )}

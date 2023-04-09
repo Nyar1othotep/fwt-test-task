@@ -1,17 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 const Spinner = ({ width, height }) => {
-   let root = document.documentElement;
+   const spinner = useRef(null);
 
    useEffect(() => {
-      root.style.setProperty("--spinner-width", width + "px");
-      root.style.setProperty("--spinner-height", height + "px");
+      spinner.current.style.setProperty("--spinner-width", width + "px");
+      spinner.current.style.setProperty("--spinner-height", height + "px");
       // eslint-disable-next-line
    }, []);
 
    return (
-      <div class="spinner">
-         <div class="spinner__wrapper">
+      <div className="spinner" ref={spinner}>
+         <div className="spinner__wrapper">
             <div></div>
          </div>
       </div>
