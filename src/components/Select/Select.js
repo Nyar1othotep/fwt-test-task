@@ -2,8 +2,6 @@ import { useRef, useState } from "react";
 import svg from "../../resources/svg/sprites.svg";
 import useOutsideClick from "../../hooks/useOutideClick";
 import SimpleBar from "simplebar-react";
-import Spinner from "../Spinner/Spinner";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 const Select = ({
    className,
@@ -12,8 +10,8 @@ const Select = ({
    value,
    onChange,
    onClick,
-   spinner = false,
-   error = false,
+   Spinner = false,
+   ErrorMessage = false,
    process = "confirmed",
 }) => {
    const [isOpen, setIsOpen] = useState(false);
@@ -26,10 +24,14 @@ const Select = ({
    return (
       <div
          ref={isOpen ? ref : null}
-         className={className + " Select " + (isOpen ? "Select--open " : "")}
+         className={
+            (className ? className : "") +
+            "Select " +
+            (isOpen ? "Select--open " : "")
+         }
          onClick={() => {
             if (!disabled) {
-               if (shouldLog.current) {
+               if (shouldLog.current && options.length === 0) {
                   shouldLog.current = false;
                   onClick();
                }
@@ -38,7 +40,7 @@ const Select = ({
          }}
          onKeyPress={(e) => {
             if (e.key === " " || (e.key === "Enter" && !disabled)) {
-               if (shouldLog.current) {
+               if (shouldLog.current && options.length === 0) {
                   shouldLog.current = false;
                   onClick();
                }
@@ -62,9 +64,9 @@ const Select = ({
                }
             >
                <SimpleBar style={{ maxHeight: "inherit" }}>
-                  {spinner && process === "loading" ? (
+                  {Spinner && process === "loading" ? (
                      <Spinner width="50" height="50" />
-                  ) : error && process === "error" ? (
+                  ) : ErrorMessage && process === "error" ? (
                      <ErrorMessage />
                   ) : (
                      options.map((option) => {

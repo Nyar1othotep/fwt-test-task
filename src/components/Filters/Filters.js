@@ -1,8 +1,12 @@
 import { useState, useCallback } from "react";
 import useFWTService from "../../services/FWTService";
 import Select from "../Select/Select";
+import Input from "../Input/Input";
+import Spinner from "../Spinner/Spinner";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 const Filters = () => {
+   const [inputValue, setInputValue] = useState("");
    const [selectValue, setSelectValue] = useState("Author");
    const [authors, setAuthors] = useState([]);
 
@@ -19,14 +23,19 @@ const Filters = () => {
       <div className="filters">
          <div className="filters__container _container">
             <div className="filters__body">
+               <Input
+                  placeholder="Name"
+                  onChange={(e) =>
+                     setInputValue((inputValue) => e.target.value)
+                  }
+               />
                <Select
-                  className="author"
                   onChange={(name) => setSelectValue((selectValue) => name)}
                   onClick={() => onRequest(getAllAuthors, setAuthors, authors)}
                   options={authors}
                   value={selectValue}
-                  spinner="true"
-                  error="true"
+                  Spinner={Spinner}
+                  ErrorMessage={ErrorMessage}
                   process={process}
                />
             </div>

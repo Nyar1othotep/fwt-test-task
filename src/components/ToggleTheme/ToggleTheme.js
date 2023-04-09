@@ -43,7 +43,7 @@ const ToggleTheme = ({ className }) => {
             }
          }}
       >
-         <svg>
+         <svg className="icon__theme">
             <use href={`${svg}#theme`}></use>
          </svg>
       </div>
