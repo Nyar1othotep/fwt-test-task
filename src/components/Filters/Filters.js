@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import Select from "../Select/Select";
 import Input from "../Input/Input";
 import Range from "../Range/Range";
 import Spinner from "../Spinner/Spinner";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
-const Filters = ({ authors, locations, process }) => {
+const Filters = memo(({ authors, locations, process }) => {
    const [inputValue, setInputValue] = useState("");
    const [selectLocationsValue, setSelectLocationsValue] = useState("Location");
    const [selectAuthorsValue, setSelectAuthorsValue] = useState("Author");
@@ -58,6 +58,6 @@ const Filters = ({ authors, locations, process }) => {
          </div>
       </div>
    );
-};
+});
 
 export default Filters;

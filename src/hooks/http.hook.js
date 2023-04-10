@@ -15,6 +15,8 @@ export const useHttp = () => {
          try {
             const response = await fetch(url, { method, body, headers });
 
+            const totalCount = response.headers.get("X-Total-Count");
+
             if (!response.ok)
                throw new Error(
                   `Could not fetch ${url}, status: ${response.status}`
@@ -22,7 +24,7 @@ export const useHttp = () => {
 
             const data = await response.json();
 
-            return data;
+            return { data, totalCount };
          } catch (error) {
             setProcess("error");
             throw error;

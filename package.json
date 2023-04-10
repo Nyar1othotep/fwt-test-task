@@ -11,7 +11,8 @@
     "react-scripts": "5.0.1",
     "sass": "^1.60.0",
     "simplebar-react": "^3.2.3",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "webfontloader": "^1.6.28"
   },
   "scripts": {
     "start": "react-scripts start",

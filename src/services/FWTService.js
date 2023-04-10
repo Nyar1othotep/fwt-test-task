@@ -7,18 +7,23 @@ const useFWTService = () => {
    const _basePage = 1;
 
    const getAllAuthors = async () => {
-      const res = await request(`${_apiBase}authors`);
-      return res.map(_transfromAuthors);
+      const { data } = await request(`${_apiBase}authors`);
+      return data.map(_transfromAuthors);
    };
 
    const getAllLocations = async () => {
-      const res = await request(`${_apiBase}locations`);
-      return res.map(_transfromLocations);
+      const { data } = await request(`${_apiBase}locations`);
+      return data.map(_transfromLocations);
    };
 
    const getAllPaintings = async (page = _basePage) => {
-      const res = await request(`${_apiBase}paintings?_page=${page}`);
-      return res;
+      const { data, totalCount } = await request(
+         `${_apiBase}paintings?_page=${page}`
+      );
+      return {
+         data,
+         totalCount,
+      };
    };
 
    const _transfromAuthors = (authors) => {

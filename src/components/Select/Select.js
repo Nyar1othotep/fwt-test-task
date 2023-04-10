@@ -6,10 +6,10 @@ import SimpleBar from "simplebar-react";
 const Select = ({
    className,
    disabled = false,
-   options,
+   options = [],
    value,
    onChange,
-   onClick,
+   onClick = () => null,
    Spinner = false,
    ErrorMessage = false,
    process = "confirmed",
@@ -71,6 +71,8 @@ const Select = ({
                      <Spinner width="50" height="50" />
                   ) : ErrorMessage && process === "error" ? (
                      <ErrorMessage />
+                  ) : options.length === 0 ? (
+                     <span>No options yet.</span>
                   ) : (
                      options.map((option) => {
                         return (

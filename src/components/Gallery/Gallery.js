@@ -3,6 +3,7 @@ import setContent from "../../utils/setContent";
 import GalleryItem from "../GalleryItem/GalleryItem";
 
 const Gallery = ({ paintings, process }) => {
+
    const renderItems = (arr) => {
       if (arr.length === 0) {
          return <div>No images yet.</div>;

@@ -8,6 +8,8 @@ const GalleryPage = () => {
    const [authors, setAuthors] = useState([]);
    const [locations, setLocations] = useState([]);
    const [paintings, setPaintings] = useState([]);
+   const [totalPaintings, setTotalPaintings] = useState(0);
+   const [filtersProcess, setFiltersProcess] = useState("waiting");
 
    const {
       getAllAuthors,
@@ -23,23 +25,46 @@ const GalleryPage = () => {
    }, []);
 
    const onRequest = () => {
+      setFiltersProcess((filtersProcess) => "loading");
       Promise.all([getAllAuthors(), getAllLocations(), getAllPaintings()])
          .then(onDataLoaded)
-         .then(() => setProcess("confirmed"));
+         .then(() => {
+            setProcess((process) => "confirmed");
+            setFiltersProcess((filtersProcess) => "confirmed");
+         });
+   };
+
+   const onPaintingsRequest = (page) => {
+      getAllPaintings(page)
+         .then(onPaintingsLoaded)
+         .then(() => setProcess((process) => "confirmed"));
    };
 
    const onDataLoaded = ([authorsData, locationsData, paintingsData]) => {
+      setAuthors(authorsData);
+      setLocations(locationsData);
+      setTotalPaintings(paintingsData.totalCount);
+      modifiedPaintingsData(authorsData, locationsData, paintingsData.data);
+   };
+
+   const onPaintingsLoaded = (paintingsData) => {
+      modifiedPaintingsData(authors, locations, paintingsData.data);
+   };
+
+   const modifiedPaintingsData = (
+      authorsData,
+      locationsData,
+      paintingsData
+   ) => {
       const authorsObj = {};
       authorsData.forEach((author) => {
          authorsObj[author.id] = author.option;
       });
-      setAuthors((authors) => authorsData);
 
       const locationsObj = {};
       locationsData.forEach((location) => {
          locationsObj[location.id] = location.option;
       });
-      setLocations((locations) => locationsData);
 
       const modifiedPaintings = paintingsData.map((painting) => ({
          ...painting,
@@ -51,7 +76,11 @@ const GalleryPage = () => {
 
    return (
       <>
-         <Filters authors={authors} locations={locations} process={process} />
+         <Filters
+            authors={authors}
+            locations={locations}
+            process={filtersProcess}
+         />
          <Gallery paintings={paintings} process={process} />
       </>
    );
