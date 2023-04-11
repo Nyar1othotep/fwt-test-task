@@ -1,0 +1,12 @@
+.gallery {
+	&__body {}
+   &__row {
+      display: flex;
+		flex-wrap: wrap;
+      margin: 0px -10px;
+   }
+   &__column {
+      padding: 0px 10px;
+      flex: 0 1 33.333%;
+   }
+}

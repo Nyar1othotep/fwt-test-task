@@ -3,7 +3,13 @@ import PaginationPageWithActive from "./PaginationPageWithActive/PaginationPageW
 import usePaginationSlice from "../../hooks/usePaginationSlice";
 import svg from "../../resources/svg/sprites.svg";
 
-const Pagination = ({ currentPage, pagesAmount, className, onChange }) => {
+const Pagination = ({
+   currentPage,
+   pagesAmount,
+   className,
+   onChange,
+   process = "confirmed",
+}) => {
    const slicedPagesArray = usePaginationSlice({
       current: currentPage,
       amount: pagesAmount,
@@ -18,7 +24,13 @@ const Pagination = ({ currentPage, pagesAmount, className, onChange }) => {
    };
 
    return (
-      <div className={(className, "Pagination")}>
+      <div
+         className={
+            (className, "Pagination") +
+            (process === "loading" ? " disabled" : "")
+         }
+         style={process === "loading" ? { pointerEvents: "none" } : {}}
+      >
          <PaginationPage {...leftArrowProps} onClick={() => onChange(1)}>
             <svg className="icon__p-doubleArrow">
                <use href={`${svg}#p-doubleArrow`}></use>
@@ -36,7 +48,7 @@ const Pagination = ({ currentPage, pagesAmount, className, onChange }) => {
          {slicedPagesArray.map((el) => (
             <PaginationPageWithActive
                onClick={() => onChange(el)}
-               isActive={currentPage === el}
+               isActive={currentPage === el || pagesAmount === 1}
                key={el}
             >
                {el}

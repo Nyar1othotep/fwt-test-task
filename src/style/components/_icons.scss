@@ -9,16 +9,26 @@
       height: 6px;
       fill: $disabled;
    }
+	&__remove {
+      width: 8px;
+      height: 8px;
+      fill: $disabled;
+		&:hover {
+			fill: $black;
+		}
+   }
    &__p-arrow {
-      width: 6px;
-      height: 10px;
+      width: 8px;
+      height: 13px;
+      fill: var(--main-color);
       &--r {
          transform: rotate(180deg);
       }
    }
    &__p-doubleArrow {
-      width: 10px;
-      height: 10px;
+      width: 13px;
+      height: 13px;
+      fill: var(--main-color);
       &--r {
          transform: rotate(180deg);
       }

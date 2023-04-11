@@ -7,12 +7,14 @@ const Select = ({
    className,
    disabled = false,
    options = [],
+   initialValue,
    value,
    onChange,
    onClick = () => null,
    Spinner = false,
    ErrorMessage = false,
    process = "confirmed",
+   onReset,
 }) => {
    const [isOpen, setIsOpen] = useState(false);
    const ref = useRef(null);
@@ -52,8 +54,14 @@ const Select = ({
          }}
          tabIndex={0}
       >
-         {!value && <span className="Select__title">Choose an option</span>}
-         <span className="Select__title">{value}</span>
+         <span className="Select__title">{value ? value : initialValue}</span>
+         {value && (
+            <div className="Select__remove" onClick={onReset}>
+               <svg className="icon__remove">
+                  <use href={`${svg}#remove`}></use>
+               </svg>
+            </div>
+         )}
          <div className="Select__arrow">
             <svg className="icon__arrow">
                <use href={`${svg}#arrow`}></use>
@@ -77,10 +85,10 @@ const Select = ({
                      options.map((option) => {
                         return (
                            <li
-                              onClick={() => onChange(option.option)}
+                              onClick={() => onChange(option)}
                               onKeyPress={(e) => {
                                  if (e.key === " " || e.key === "Enter") {
-                                    onChange(option.option);
+                                    onChange(option);
                                  }
                               }}
                               className={"Select__option "}

@@ -7,7 +7,7 @@ const GalleryItem = ({ name, authorId, created, locationId, imageUrl }) => {
                <ul className="item-gallery__list">
                   <li className="item-gallery__item">
                      <strong>Author:</strong>
-                     {authorId}
+                     {authorId.option}
                   </li>
                   <li className="item-gallery__item">
                      <strong>Created:</strong>
@@ -15,7 +15,7 @@ const GalleryItem = ({ name, authorId, created, locationId, imageUrl }) => {
                   </li>
                   <li className="item-gallery__item">
                      <strong>Location:</strong>
-                     {locationId}
+                     {locationId.option}
                   </li>
                </ul>
             </div>

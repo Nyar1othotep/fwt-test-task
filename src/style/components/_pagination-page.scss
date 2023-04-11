@@ -1,15 +1,17 @@
 .PaginationPage {
-   width: 39px;
-   height: 38px;
+   width: 41px;
+   height: 41px;
    display: flex;
    justify-content: center;
    align-items: center;
    user-select: none;
    cursor: pointer;
-   border: 1px solid black;
+   border: 1px solid var(--main-color);
    border-right: none;
-   color: black;
    background: inherit;
+   font-family: "Roboto Medium";
+   font-size: 18px;
+   color: inherit;
    &:first-of-type {
       border-radius: 8px 0 0 8px;
       cursor: pointer;
@@ -23,13 +25,14 @@
       border-radius: 8px;
    }
    &:hover {
-      background: #ededed;
-      color: black;
-      border-color: black;
+      background: var(--pagination-hover);
+      border-color: var(--main-color);
    }
    &:disabled {
-      border-color: #b3b3b3;
-      color: #b3b3b3;
+      border-color: $disabled;
+      svg {
+         fill: $disabled;
+      }
 
       &:hover {
          cursor: auto;
@@ -37,14 +40,14 @@
       }
    }
    &.PaginationPageWithActive {
-      background: black;
-      color: white;
-      border-color: black;
+      background: var(--main-color);
+      color: var(--background-color);
+      border-color: var(--main-color);
       &:hover {
          cursor: auto;
-         background: black;
-         color: white;
-         border-color: black;
+         background: var(--main-color);
+         color: var(--background-color);
+         border-color: var(--main-color);
       }
    }
 }

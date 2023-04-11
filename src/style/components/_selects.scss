@@ -18,7 +18,7 @@
       }
    }
    &__title {
-		padding-right: 10px;
+      padding-right: 10px;
       width: 220px;
       word-break: break-all;
       margin: 0 0 0 15px;
@@ -72,5 +72,14 @@
       display: flex;
       right: 18px;
       float: right;
+   }
+   &__remove {
+      margin: -10px;
+      padding: 10px;
+      position: absolute;
+      display: flex;
+      right: 38px;
+      float: right;
+		z-index: 20;
    }
 }

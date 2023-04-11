@@ -1,10 +1,13 @@
 import { useHttp } from "../hooks/http.hook";
+import queryString from "query-string";
 
 const useFWTService = () => {
    const { request, process, setProcess } = useHttp();
 
    const _apiBase = "https://test-front.framework.team/";
    const _basePage = 1;
+   const _baseLimit = 12;
+   const urlDependencies = {};
 
    const getAllAuthors = async () => {
       const { data } = await request(`${_apiBase}authors`);
@@ -16,10 +19,31 @@ const useFWTService = () => {
       return data.map(_transfromLocations);
    };
 
-   const getAllPaintings = async (page = _basePage) => {
-      const { data, totalCount } = await request(
-         `${_apiBase}paintings?_page=${page}`
-      );
+   const getPaintings = async (
+      page = _basePage,
+      limit = _baseLimit,
+      authorId,
+      locationId
+   ) => {
+      if (authorId === null) {
+         delete urlDependencies.authorId;
+      } else if (authorId) {
+         urlDependencies.authorId = authorId;
+      }
+
+      if (locationId === null) {
+         delete urlDependencies.locationId;
+      } else if (locationId) {
+         urlDependencies.locationId = locationId;
+      }
+
+      const queryParams = queryString.stringify(urlDependencies, {
+         skipEmptyString: true,
+      });
+
+      const url = `${_apiBase}paintings?_page=${page}&_limit=${limit}&${queryParams}`;
+
+      const { data, totalCount } = await request(url);
       return {
          data,
          totalCount,
@@ -43,7 +67,7 @@ const useFWTService = () => {
    return {
       getAllAuthors,
       getAllLocations,
-      getAllPaintings,
+      getPaintings,
       process,
       setProcess,
    };
