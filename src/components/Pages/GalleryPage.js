@@ -1,15 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import useFWTService from "../../services/FWTService";
 
 import Filters from "../Filters/Filters";
 import Gallery from "../Gallery/Gallery";
+
+import Pagination from "../Pagination/Pagination";
 
 const GalleryPage = () => {
    const [authors, setAuthors] = useState([]);
    const [locations, setLocations] = useState([]);
    const [paintings, setPaintings] = useState([]);
    const [totalPaintings, setTotalPaintings] = useState(0);
+   const [currentPage, setCurrentPage] = useState(1);
    const [filtersProcess, setFiltersProcess] = useState("waiting");
+   const itemsPerPage = 10;
 
    const {
       getAllAuthors,
@@ -26,7 +30,11 @@ const GalleryPage = () => {
 
    const onRequest = () => {
       setFiltersProcess((filtersProcess) => "loading");
-      Promise.all([getAllAuthors(), getAllLocations(), getAllPaintings()])
+      Promise.all([
+         getAllAuthors(),
+         getAllLocations(),
+         getAllPaintings(currentPage),
+      ])
          .then(onDataLoaded)
          .then(() => {
             setProcess((process) => "confirmed");
@@ -34,16 +42,20 @@ const GalleryPage = () => {
          });
    };
 
-   const onPaintingsRequest = (page) => {
-      getAllPaintings(page)
-         .then(onPaintingsLoaded)
-         .then(() => setProcess((process) => "confirmed"));
-   };
+   const onPaintingsRequest = useCallback(
+      (page) => {
+         getAllPaintings(page)
+            .then(onPaintingsLoaded)
+            .then(() => setProcess((process) => "confirmed"));
+      },
+      // eslint-disable-next-line
+      [authors, locations]
+   );
 
    const onDataLoaded = ([authorsData, locationsData, paintingsData]) => {
       setAuthors(authorsData);
       setLocations(locationsData);
-      setTotalPaintings(paintingsData.totalCount);
+      setTotalPaintings(Math.ceil(paintingsData.totalCount / itemsPerPage));
       modifiedPaintingsData(authorsData, locationsData, paintingsData.data);
    };
 
@@ -57,14 +69,14 @@ const GalleryPage = () => {
       paintingsData
    ) => {
       const authorsObj = {};
-      authorsData.forEach((author) => {
+      for (const author of authorsData) {
          authorsObj[author.id] = author.option;
-      });
+      }
 
       const locationsObj = {};
-      locationsData.forEach((location) => {
+      for (const location of locationsData) {
          locationsObj[location.id] = location.option;
-      });
+      }
 
       const modifiedPaintings = paintingsData.map((painting) => ({
          ...painting,
@@ -76,6 +88,14 @@ const GalleryPage = () => {
 
    return (
       <>
+         <Pagination
+            currentPage={currentPage}
+            pagesAmount={totalPaintings}
+            onChange={(value) => {
+               setCurrentPage((currentPage) => value);
+               onPaintingsRequest(value);
+            }}
+         />
          <Filters
             authors={authors}
             locations={locations}

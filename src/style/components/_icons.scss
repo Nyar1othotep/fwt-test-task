@@ -9,4 +9,18 @@
       height: 6px;
       fill: $disabled;
    }
+   &__p-arrow {
+      width: 6px;
+      height: 10px;
+      &--r {
+         transform: rotate(180deg);
+      }
+   }
+   &__p-doubleArrow {
+      width: 10px;
+      height: 10px;
+      &--r {
+         transform: rotate(180deg);
+      }
+   }
 }
