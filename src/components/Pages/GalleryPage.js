@@ -40,8 +40,8 @@ const GalleryPage = () => {
    };
 
    const onPaintingsRequest = useCallback(
-      ({ page, authorId, locationId }) => {
-         getPaintings(page, itemsPerPage, authorId, locationId)
+      ({ page, q, authorId, locationId }) => {
+         getPaintings(page, itemsPerPage, q, authorId, locationId)
             .then(onPaintingsLoaded)
             .then(() => setProcess("confirmed"));
       },

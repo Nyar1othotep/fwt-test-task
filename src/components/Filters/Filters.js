@@ -21,9 +21,11 @@ const Filters = ({ authors, locations, process, onRequest }) => {
                <Input
                   placeholder="Name"
                   value={inputValue}
-                  onChange={(e) =>
-                     setInputValue((inputValue) => e.target.value)
-                  }
+                  onChange={(e) => {
+                     setInputValue((inputValue) => e.target.value);
+							// Сделать на onClick
+                     onRequest({ q: e.target.value });
+                  }}
                />
 
                <SelectMemoized

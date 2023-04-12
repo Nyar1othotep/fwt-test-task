@@ -22,9 +22,16 @@ const useFWTService = () => {
    const getPaintings = async (
       page = _basePage,
       limit = _baseLimit,
+      q,
       authorId,
       locationId
    ) => {
+      if (q === null) {
+         delete urlDependencies.q;
+      } else if (q) {
+         urlDependencies.q = q;
+      }
+
       if (authorId === null) {
          delete urlDependencies.authorId;
       } else if (authorId) {
