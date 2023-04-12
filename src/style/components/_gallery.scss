@@ -1,12 +1,53 @@
 .gallery {
-	&__body {}
+   &__body {
+      padding-bottom: 40px;
+   }
    &__row {
       display: flex;
-		flex-wrap: wrap;
-      margin: 0px -10px;
+      flex-wrap: wrap;
+      margin: 0px -10px -20px;
    }
    &__column {
       padding: 0px 10px;
+      margin: 0px 0px 20px 0px;
       flex: 0 1 33.333%;
+   }
+}
+
+.item-gallery {
+   position: relative;
+   overflow: hidden;
+   border-radius: 20px;
+   cursor: pointer;
+   &:hover {
+      .item-gallery__container {
+         bottom: 0;
+      }
+   }
+   &__container {
+      padding: 5px 15px 44px 15px;
+      position: absolute;
+      width: 100%;
+      bottom: -115px;
+      background: $card-backgound-color;
+      font-family: "Roboto Light";
+      font-size: 13px;
+      @include lh(20, 13);
+      color: $black;
+      transition: 0.1s ease-in-out;
+      z-index: 1;
+   }
+   &__list > *:not(:last-child) {
+      margin: 0px 0px 5px 0px;
+   }
+   &__name {
+      margin: 0px 0px 6px 0px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+   }
+   &__img {
+      display: block;
+      padding: 0 0 76.38% 0;
    }
 }

@@ -1,4 +1,4 @@
-import logo from "../../resources/img/logo.png";
+import logo from "../../resources/images/logo.png";
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
 
 const AppHeader = () => {

@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import Select from "../Select/Select";
 import Input from "../Input/Input";
 import Range from "../Range/Range";
 import Spinner from "../Spinner/Spinner";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+
+const SelectMemoized = memo(Select);
 
 const Filters = ({ authors, locations, process, onRequest }) => {
    const [inputValue, setInputValue] = useState("");
@@ -24,7 +26,7 @@ const Filters = ({ authors, locations, process, onRequest }) => {
                   }
                />
 
-               <Select
+               <SelectMemoized
                   onChange={(option) => {
                      setSelectAuthorsValue(
                         (selectAuthorsValue) => option.option
@@ -44,7 +46,7 @@ const Filters = ({ authors, locations, process, onRequest }) => {
                   }}
                />
 
-               <Select
+               <SelectMemoized
                   onChange={(option) => {
                      setSelectLocationsValue(
                         (selectLocationsValue) => option.option

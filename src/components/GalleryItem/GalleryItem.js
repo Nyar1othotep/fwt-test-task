@@ -1,5 +1,7 @@
-const GalleryItem = ({ name, authorId, created, locationId, imageUrl }) => {
+import Image from "../Image/Image";
+import LazyLoad from "react-lazyload";
 
+const GalleryItem = ({ name, authorId, created, locationId, imageUrl }) => {
    return (
       <li className="gallery__column">
          <div className="gallery__item item-gallery">
@@ -20,7 +22,9 @@ const GalleryItem = ({ name, authorId, created, locationId, imageUrl }) => {
                   </li>
                </ul>
             </div>
-            <img src={imageUrl} alt={name} />
+            <LazyLoad className="item-gallery__img _ibg">
+               <Image url={imageUrl} alt={name} />
+            </LazyLoad>
          </div>
       </li>
    );
