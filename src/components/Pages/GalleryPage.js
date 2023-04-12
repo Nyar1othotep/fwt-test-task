@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, memo } from "react";
+import { useState, useEffect, useCallback, memo, useMemo } from "react";
 import useFWTService from "../../services/FWTService";
 
 import Filters from "../Filters/Filters";
@@ -9,9 +9,9 @@ const FiltersMemoized = memo(Filters);
 const GalleryMemoized = memo(Gallery);
 
 const GalleryPage = () => {
-   const [authors, setAuthors] = useState([]);
-   const [locations, setLocations] = useState([]);
    const [paintings, setPaintings] = useState([]);
+   const [authorsObj, setAuthorsObj] = useState({});
+   const [locationsObj, setLocationsObj] = useState({});
    const [totalPaintings, setTotalPaintings] = useState(0);
    const [currentPage, setCurrentPage] = useState(1);
    const [filtersProcess, setFiltersProcess] = useState("waiting");
@@ -46,61 +46,56 @@ const GalleryPage = () => {
             .then(() => setProcess("confirmed"));
       },
       // eslint-disable-next-line
-      [authors, locations]
+      [authorsObj, locationsObj]
    );
 
    const onDataLoaded = ([authorsData, locationsData, paintingsData]) => {
-      setAuthors(authorsData);
-      setLocations(locationsData);
-      modifiedPaintingsData(authorsData, locationsData, paintingsData);
+      setAuthorsObj((authorsObj) => modifiedObj(authorsData));
+      setLocationsObj((locationsObj) => modifiedObj(locationsData));
+      modifiedPaintingsData(
+         modifiedObj(authorsData),
+         modifiedObj(locationsData),
+         paintingsData
+      );
    };
 
    const onPaintingsLoaded = (paintingsData) => {
-      modifiedPaintingsData(authors, locations, paintingsData);
+      modifiedPaintingsData(authorsObj, locationsObj, paintingsData);
    };
 
+   const modifiedObj = useMemo(() => {
+      return (data) => {
+         const obj = {};
+         for (const item of data) {
+            obj[item.id] = {
+               id: item.id,
+               option: item.option,
+            };
+         }
+         return obj;
+      };
+   }, []);
+
    const modifiedPaintingsData = useCallback(
-      (authorsData, locationsData, paintingsData) => {
+      (authorsObj, locationsObj, paintingsData) => {
          setTotalPaintings(Math.ceil(paintingsData.totalCount / itemsPerPage));
 
-			// Все еще нужно оптмизировать объекты
-         const authorsObj = authorsData.reduce(
-            (obj, author) => ({
-               ...obj,
-               [author.id]: {
-                  id: author.id,
-                  option: author.option,
-               },
-            }),
-            {}
-         );
-
-         const locationsObj = locationsData.reduce(
-            (obj, location) => ({
-               ...obj,
-               [location.id]: {
-                  id: location.id,
-                  option: location.option,
-               },
-            }),
-            {}
-         );
-
-         const modifiedPaintings = paintingsData.data.map((painting) => ({
+         const modifiedData = paintingsData.data.map((painting) => ({
             ...painting,
             authorId: authorsObj[painting.authorId],
             locationId: locationsObj[painting.locationId],
          }));
-         setPaintings((paintings) => modifiedPaintings);
+         setPaintings((paintings) => modifiedData);
       },
+      // eslint-disable-next-line
       [itemsPerPage]
    );
 
    return (
       <>
          <FiltersMemoized
-            authors={authors}
-            locations={locations}
+            authors={authorsObj}
+            locations={locationsObj}
             process={filtersProcess}
             onRequest={onPaintingsRequest}
          />

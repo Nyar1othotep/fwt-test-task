@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import svg from "../../resources/svg/sprites.svg";
-import useOutsideClick from "../../hooks/useOutideClick";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
 const Range = ({
    className,

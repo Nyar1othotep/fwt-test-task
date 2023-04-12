@@ -1,4 +1,5 @@
 const GalleryItem = ({ name, authorId, created, locationId, imageUrl }) => {
+
    return (
       <li className="gallery__column">
          <div className="gallery__item item-gallery">
