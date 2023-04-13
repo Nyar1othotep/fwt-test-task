@@ -23,8 +23,16 @@ const Filters = ({ authors, locations, process, onRequest }) => {
                   value={inputValue}
                   onChange={(e) => {
                      setInputValue((inputValue) => e.target.value);
-							// Сделать на onClick
-                     onRequest({ q: e.target.value });
+                  }}
+                  onKeyPress={(e) => {
+                     if (e.key === "Enter") {
+                        const trimmedValue = inputValue.trim();
+                        onRequest({ q: trimmedValue || null });
+                     }
+                  }}
+                  onReset={(event) => {
+                     setInputValue((inputValue) => "");
+                     onRequest({ q: null });
                   }}
                />
 
@@ -75,6 +83,13 @@ const Filters = ({ authors, locations, process, onRequest }) => {
                   }
                   fromValue={fromValue}
                   beforeValue={beforeValue}
+                  onRequest={onRequest}
+                  onReset={(event) => {
+                     event.stopPropagation();
+                     setFromValue((fromValue) => "");
+                     setBeforeValue((beforeValue) => "");
+                     onRequest({ created_gte: null, created_lte: null });
+                  }}
                />
             </div>
          </div>

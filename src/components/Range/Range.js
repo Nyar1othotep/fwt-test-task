@@ -8,6 +8,8 @@ const Range = ({
    onChangeBefore,
    fromValue,
    beforeValue,
+   onRequest,
+   onReset,
 }) => {
    const [isOpen, setIsOpen] = useState(false);
    const ref = useRef(null);
@@ -40,7 +42,26 @@ const Range = ({
             }
          }}
       >
-         <span className={"Range__title"}>Created</span>
+         <span className={"Range__title"}>
+            {!fromValue && !beforeValue ? "Created" : ""}
+            {fromValue} {beforeValue}
+         </span>
+         {(fromValue || beforeValue) && (
+            <div
+               className="Range__remove"
+               onClick={onReset}
+               onKeyPress={(e) => {
+                  if (e.key === " " || e.key === "Enter") {
+                     onReset(e);
+                  }
+               }}
+               tabIndex={0}
+            >
+               <svg className="icon__remove">
+                  <use href={`${svg}#remove`}></use>
+               </svg>
+            </div>
+         )}
          <div className="Range__arrow">
             <svg className="icon__arrow">
                <use href={`${svg}#arrow`}></use>
@@ -63,6 +84,12 @@ const Range = ({
                      placeholder="from"
                      onChange={(e) => onChangeFrom(e.target.value)}
                      value={fromValue}
+                     onKeyPress={(e) => {
+                        if (e.key === "Enter") {
+                           const trimmedValue = e.target.value.trim();
+                           onRequest({ created_gte: trimmedValue || null });
+                        }
+                     }}
                   />
                   <hr />
                   <input
@@ -73,6 +100,12 @@ const Range = ({
                      placeholder="before"
                      onChange={(e) => onChangeBefore(e.target.value)}
                      value={beforeValue}
+                     onKeyPress={(e) => {
+                        if (e.key === "Enter") {
+                           const trimmedValue = e.target.value.trim();
+                           onRequest({ created_lte: trimmedValue || null });
+                        }
+                     }}
                   />
                </div>
             </div>

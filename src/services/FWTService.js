@@ -7,7 +7,7 @@ const useFWTService = () => {
    const _apiBase = "https://test-front.framework.team/";
    const _basePage = 1;
    const _baseLimit = 12;
-   const urlDependencies = {};
+   const params = {};
 
    const getAllAuthors = async () => {
       const { data } = await request(`${_apiBase}authors`);
@@ -24,33 +24,48 @@ const useFWTService = () => {
       limit = _baseLimit,
       q,
       authorId,
-      locationId
+      locationId,
+      created_gte,
+      created_lte
    ) => {
       if (q === null) {
-         delete urlDependencies.q;
+         delete params.q;
       } else if (q) {
-         urlDependencies.q = q;
+         params.q = q;
       }
 
       if (authorId === null) {
-         delete urlDependencies.authorId;
+         delete params.authorId;
       } else if (authorId) {
-         urlDependencies.authorId = authorId;
+         params.authorId = authorId;
       }
 
       if (locationId === null) {
-         delete urlDependencies.locationId;
+         delete params.locationId;
       } else if (locationId) {
-         urlDependencies.locationId = locationId;
+         params.locationId = locationId;
       }
 
-      const queryParams = queryString.stringify(urlDependencies, {
+      if (created_gte === null) {
+         delete params.created_gte;
+      } else if (created_gte) {
+         params.created_gte = created_gte;
+      }
+
+      if (created_lte === null) {
+         delete params.created_lte;
+      } else if (created_lte) {
+         params.created_lte = created_lte;
+      }
+
+      const queryParams = queryString.stringify(params, {
          skipEmptyString: true,
       });
 
       const url = `${_apiBase}paintings?_page=${page}&_limit=${limit}&${queryParams}`;
 
       const { data, totalCount } = await request(url);
+
       return {
          data,
          totalCount,

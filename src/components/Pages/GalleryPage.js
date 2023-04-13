@@ -40,8 +40,16 @@ const GalleryPage = () => {
    };
 
    const onPaintingsRequest = useCallback(
-      ({ page, q, authorId, locationId }) => {
-         getPaintings(page, itemsPerPage, q, authorId, locationId)
+      ({ page, q, authorId, locationId, created_gte, created_lte }) => {
+         getPaintings(
+            page,
+            itemsPerPage,
+            q,
+            authorId,
+            locationId,
+            created_gte,
+            created_lte
+         )
             .then(onPaintingsLoaded)
             .then(() => setProcess("confirmed"));
       },
@@ -87,7 +95,6 @@ const GalleryPage = () => {
          }));
          setPaintings((paintings) => modifiedData);
       },
-      // eslint-disable-next-line
       [itemsPerPage]
    );
 

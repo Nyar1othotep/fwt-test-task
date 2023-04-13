@@ -58,4 +58,16 @@
          background: var(--main-color);
       }
    }
+   &__remove {
+      margin: -10px;
+      padding: 10px;
+      position: absolute;
+      display: flex;
+      right: 38px;
+      float: right;
+      z-index: 20;
+      &:hover svg {
+         fill: $black;
+      }
+   }
 }

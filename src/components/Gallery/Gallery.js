@@ -5,7 +5,7 @@ import GalleryItem from "../GalleryItem/GalleryItem";
 const Gallery = ({ paintings, process }) => {
    const renderItems = (arr) => {
       if (arr.length === 0) {
-         return <div>No images yet.</div>;
+         return <div>No images.</div>;
       }
 
       return arr.map(({ id, ...props }) => {
@@ -15,8 +15,7 @@ const Gallery = ({ paintings, process }) => {
 
    const elements = useMemo(() => {
       return setContent(process, () => renderItems(paintings), paintings);
-      // eslint-disable-next-line
-   }, [process]);
+   }, [process, paintings]);
 
    return (
       <div className="gallery">
