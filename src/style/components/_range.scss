@@ -4,8 +4,7 @@
    flex-direction: column;
    justify-content: center;
    align-items: flex-start;
-   width: 265px;
-   line-height: 15px;
+   width: 100%;
    height: 46px;
    border: 1px solid var(--main-color);
    background: var(--filters-background);
@@ -36,7 +35,7 @@
       align-self: center;
       width: inherit;
       top: 45px;
-      border: 1px solid var(--main-color);
+      outline: 1px solid var(--main-color);
       padding: 20px 22px;
       box-sizing: border-box;
       border-radius: 0 0 8px 8px;
@@ -68,6 +67,22 @@
       z-index: 20;
       &:hover svg {
          fill: $black;
+      }
+   }
+}
+
+@media (max-width: 1024px) {
+   .Range {
+      &__inner {
+         flex-direction: column;
+      }
+   }
+}
+
+@media (max-width: 585px) {
+   .Range {
+      &__inner {
+         flex-direction: row;
       }
    }
 }

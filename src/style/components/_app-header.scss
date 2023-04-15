@@ -12,3 +12,9 @@
       object-fit: contain;
    }
 }
+
+@media (max-width: 585px) {
+   .app-header {
+      padding: 25px 0;
+   }
+}

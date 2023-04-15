@@ -20,8 +20,8 @@ strong {
 /* ----------------CONTAINER------------------------------------------------- */
 
 ._container {
-   max-width: 1150px;
-   padding: 0 15px;
+   max-width: 1204px;
+   padding: 0 42px;
    margin: 0 auto;
 }
 
@@ -40,3 +40,15 @@ strong {
 }
 
 /* ----------------MEDIA------------------------------------------------- */
+
+@media (max-width: 768px) {
+   ._container {
+      padding: 0 34px;
+   }
+}
+
+@media (max-width: 585px) {
+   ._container {
+      padding: 0 20px;
+   }
+}
