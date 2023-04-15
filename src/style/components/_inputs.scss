@@ -1,0 +1,62 @@
+input {
+   font-family: inherit;
+   font-size: inherit;
+   line-height: inherit;
+   color: inherit;
+}
+
+.Input {
+   width: 100%;
+   height: 45px;
+   border-radius: 8px;
+   border: 1px solid var(--main-color);
+   outline: none;
+   padding: 0 15px;
+   box-sizing: border-box;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   background: var(--filters-background);
+   &__wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+   }
+   &__remove {
+      margin: -10px;
+      padding: 10px;
+      position: absolute;
+      display: flex;
+      right: 18px;
+      float: right;
+      z-index: 20;
+      cursor: pointer;
+      &:hover svg {
+         fill: $black;
+      }
+   }
+}
+
+.Range__input {
+   padding: 0px 15px;
+   width: 100%;
+   min-height: 45px;
+   max-height: 45px;
+   border-radius: 8px;
+   background: $range-input-backgrund;
+   color: $black;
+
+   /* Hide Arrows From Input Number */
+
+   /* Chrome, Safari, Edge, Opera */
+   &::-webkit-outer-spin-button,
+   &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+   }
+
+   /* Firefox */
+   &[type="number"] {
+      -moz-appearance: textfield;
+      appearance: textfield;
+   }
+}

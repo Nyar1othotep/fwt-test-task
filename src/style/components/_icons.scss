@@ -1,0 +1,42 @@
+.icon {
+   &__theme {
+      width: 20px;
+      height: 20px;
+      fill: var(--main-color);
+   }
+   &__arrow {
+      width: 10px;
+      height: 6px;
+      fill: $disabled;
+   }
+   &__remove {
+      width: 8px;
+      height: 8px;
+      fill: $disabled;
+   }
+   &__p-arrow {
+      width: 8px;
+      height: 13px;
+      fill: var(--main-color);
+      &--r {
+         transform: rotate(180deg);
+      }
+   }
+   &__p-doubleArrow {
+      width: 13px;
+      height: 13px;
+      fill: var(--main-color);
+      &--r {
+         transform: rotate(180deg);
+      }
+   }
+}
+
+@media (max-width: 585px) {
+   .icon {
+      &__theme {
+         width: 22px;
+         height: 22px;
+      }
+   }
+}

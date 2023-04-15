@@ -1,0 +1,29 @@
+.pagination-control {
+   &__body {
+      padding-bottom: 97px;
+   }
+}
+
+@media (max-width: 1024px) {
+   .pagination-control {
+      &__body {
+         padding-bottom: 62px;
+      }
+   }
+}
+
+@media (max-width: 840px) {
+   .pagination-control {
+      &__body {
+         padding-bottom: 54px;
+      }
+   }
+}
+
+@media (max-width: 585px) {
+   .pagination-control {
+      &__body {
+         padding-bottom: 34px;
+      }
+   }
+}
