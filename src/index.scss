@@ -1,6 +1,5 @@
 @import "./style/abstracts/variables";
-@import "./style/abstracts/fonts";
-// @import "./style/base/normalize";
+@import "./style/base/normalize";
 @import "./style/base/nullstyle";
 @import "./style/base/main-styles";
 @import "./style/components/app-header";
@@ -16,3 +15,4 @@
 @import "./style/components/pagination";
 @import "./style/components/simplebar";
 @import "./style/components/spinner";
+@import "./style/components/error-message";

@@ -9,7 +9,8 @@
    border: 1px solid var(--main-color);
    border-right: none;
    background: inherit;
-   font-family: "Roboto Medium";
+   font-family: "Roboto", sans-serif;
+   font-weight: 500;
    font-size: 18px;
    color: inherit;
    &:first-of-type {

@@ -32,7 +32,8 @@
       max-height: 145px;
       bottom: -115px;
       background: $card-backgound-color;
-      font-family: "Roboto Light";
+      font-family: "Roboto", sans-serif;
+      font-weight: 300;
       font-size: 13px;
       @include lh(20, 13);
       color: $black;

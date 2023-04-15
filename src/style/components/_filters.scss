@@ -1,6 +1,7 @@
 .filters {
    padding-bottom: 45px;
-   font-family: "Roboto Regular";
+   font-family: "Roboto", sans-serif;
+	font-weight: 400;
    font-size: 13px;
    @include lh(15, 13);
    &__body {

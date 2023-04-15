@@ -64,7 +64,8 @@
       }
    }
    &__optionName {
-      font-family: "Roboto Medium";
+      font-family: "Roboto", sans-serif;
+      font-weight: 500;
       font-size: 16px;
       @include lh(20, 16);
       color: inherit;

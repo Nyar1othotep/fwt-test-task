@@ -1,18 +1,22 @@
 body {
+   font-family: "Roboto", sans-serif;
+   font-weight: 400;
    background: var(--background-color);
    scroll-behavior: smooth;
    color: var(--main-color);
 }
 
 h2 {
-   font-family: "Roboto Bold";
+   font-family: "Roboto", sans-serif;
+   font-weight: bold;
    font-size: 18px;
    @include lh(20, 18);
 }
 
 strong {
    margin: 0px 9px 0px 0px;
-   font-family: "Roboto Medium";
+   font-family: "Roboto", sans-serif;
+   font-weight: 500;
    font-size: 13px;
    @include lh(20, 13);
 }

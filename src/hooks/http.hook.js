@@ -10,7 +10,7 @@ export const useHttp = () => {
          body = null,
          headers = { "Content-Type": "application/json" }
       ) => {
-         setProcess("loading");
+         setProcess((process) => "loading");
 
          try {
             const response = await fetch(url, { method, body, headers });
@@ -26,7 +26,7 @@ export const useHttp = () => {
 
             return { data, totalCount };
          } catch (error) {
-            setProcess("error");
+            setProcess((process) => "error");
             throw error;
          }
       },

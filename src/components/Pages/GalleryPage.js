@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, memo, useMemo } from "react";
 import useFWTService from "../../services/FWTService";
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 import Filters from "../Filters/Filters";
 import Gallery from "../Gallery/Gallery";
@@ -100,22 +101,28 @@ const GalleryPage = () => {
 
    return (
       <>
-         <FiltersMemoized
-            authors={authorsObj}
-            locations={locationsObj}
-            process={filtersProcess}
-            onRequest={onPaintingsRequest}
-         />
+         <ErrorBoundary>
+            <FiltersMemoized
+               authors={authorsObj}
+               locations={locationsObj}
+               process={filtersProcess}
+               onRequest={onPaintingsRequest}
+            />
+         </ErrorBoundary>
 
-         <GalleryMemoized paintings={paintings} process={process} />
+         <ErrorBoundary>
+            <GalleryMemoized paintings={paintings} process={process} />
+         </ErrorBoundary>
 
-         <PaginationControl
-            currentPage={totalPaintings === 1 ? 1 : currentPage}
-            setPage={setCurrentPage}
-            totalPaintings={totalPaintings}
-            onRequest={onPaintingsRequest}
-            process={process}
-         />
+         <ErrorBoundary>
+            <PaginationControl
+               currentPage={totalPaintings === 1 ? 1 : currentPage}
+               setPage={setCurrentPage}
+               totalPaintings={totalPaintings}
+               onRequest={onPaintingsRequest}
+               process={process}
+            />
+         </ErrorBoundary>
       </>
    );
 };
