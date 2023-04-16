@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/fwt-test-task/static/css/main.8c8861ca.css",
-    "main.js": "/fwt-test-task/static/js/main.b71546cf.js",
+    "main.js": "/fwt-test-task/static/js/main.b20dd1e5.js",
     "static/media/The_altar_of_St_Barnabas.jpeg": "/fwt-test-task/static/media/The_altar_of_St_Barnabas.5cf4946c4b3b6f6cef44.jpeg",
     "static/media/Landliche_Idylle.jpeg": "/fwt-test-task/static/media/Landliche_Idylle.8eac3fd8f6d3db63edfe.jpeg",
     "static/media/The_sun.jpeg": "/fwt-test-task/static/media/The_sun.5cfd0bb33dd0b02118a6.jpeg",
@@ -69,10 +69,10 @@
     "static/media/roboto-greek-ext-300-normal.woff2": "/fwt-test-task/static/media/roboto-greek-ext-300-normal.35b9d6be04b95f0f0530.woff2",
     "static/media/roboto-greek-ext-700-normal.woff2": "/fwt-test-task/static/media/roboto-greek-ext-700-normal.bd9854c751441ccc1a70.woff2",
     "main.8c8861ca.css.map": "/fwt-test-task/static/css/main.8c8861ca.css.map",
-    "main.b71546cf.js.map": "/fwt-test-task/static/js/main.b71546cf.js.map"
+    "main.b20dd1e5.js.map": "/fwt-test-task/static/js/main.b20dd1e5.js.map"
   },
   "entrypoints": [
     "static/css/main.8c8861ca.css",
-    "static/js/main.b71546cf.js"
+    "static/js/main.b20dd1e5.js"
   ]
 }
