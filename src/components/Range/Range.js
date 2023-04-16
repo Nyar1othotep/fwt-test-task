@@ -87,11 +87,13 @@ const Range = ({
                         value={fromValue}
                         onKeyPress={(e) => {
                            if (e.key === "Enter") {
+                              e.preventDefault();
                               const trimmedValue = e.target.value.trim();
                               onRequest({ created_gte: trimmedValue || null });
                            }
                            if (e.key === " ") e.stopPropagation();
                         }}
+                        tabindex={0}
                      />
                      <hr />
                      <input
@@ -109,6 +111,7 @@ const Range = ({
                            }
                            if (e.key === " ") e.stopPropagation();
                         }}
+                        tabindex={-1}
                      />
                   </div>
                </div>
