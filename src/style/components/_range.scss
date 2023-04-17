@@ -62,9 +62,9 @@
       padding: 10px;
       position: absolute;
       display: flex;
-      right: 38px;
+      right: 37px;
       float: right;
-      z-index: 20;
+      z-index: 1;
       &:hover svg {
          fill: $black;
       }
