@@ -60,8 +60,12 @@
 
 Но даже так, сайт имеет неплохие показатели оптимизации:
 
+<p align="center">
 <img src="./readme_assets/yoraFWAe8V8.jpg" width="40%">
+</p>
+<p align="center">
 <img src="./readme_assets/Zv1HDUkwLa0.jpg" width="40%">
+</p>
 
 ## Установка проекта
 
