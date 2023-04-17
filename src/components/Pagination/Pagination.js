@@ -31,13 +31,18 @@ const Pagination = ({
          }
          style={process === "loading" ? { pointerEvents: "none" } : {}}
       >
-         <PaginationPage {...leftArrowProps} onClick={() => onChange(1)}>
+         <PaginationPage
+            {...leftArrowProps}
+            ariaLabel="first page"
+            onClick={() => onChange(1)}
+         >
             <svg className="icon__p-doubleArrow">
                <use href={`${svg}#p-doubleArrow`}></use>
             </svg>
          </PaginationPage>
          <PaginationPage
             {...leftArrowProps}
+            ariaLabel="next page"
             onClick={() => onChange(currentPage - 1)}
          >
             <svg className="icon__p-arrow">
@@ -56,6 +61,7 @@ const Pagination = ({
          ))}
          <PaginationPage
             {...rightArrowProps}
+            ariaLabel="previous page"
             onClick={() => onChange(currentPage + 1)}
          >
             <svg className="icon__p-arrow icon__p-arrow--r">
@@ -64,6 +70,7 @@ const Pagination = ({
          </PaginationPage>
          <PaginationPage
             {...rightArrowProps}
+            ariaLabel="last page"
             onClick={() => onChange(pagesAmount)}
          >
             <svg className="icon__p-doubleArrow icon__p-doubleArrow--r">
